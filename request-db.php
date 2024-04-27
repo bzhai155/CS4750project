@@ -93,4 +93,42 @@ function deleteRequest($reqId)
     
 }
 
+function addUser($NewUsername, $NewPassword, $NewEmail, $NewFirst_name, $NewLast_name)
+{
+    global $db;   
+    // $query = "INSERT INTO requests (reqDate, roomNumber, reqBy, repairDesc, reqPriority) VALUES ('2024-03-18', 'CCC', 'Someone', 'fix light', 'medium')";
+    // $query = "INSERT INTO requests (reqDate, roomNumber, reqBy, repairDesc, reqPriority) VALUES ('" . $reqDate . "', '" . $roomNumber . "', '" . $reqBy . "', '" . $repairDesc . "', '" . $reqPriority . "')";  
+     
+    $query1 = "INSERT INTO user (email) VALUES (:email1); 
+    INSERT INTO user_email (email, username, password) VALUES (:email2, :username1, :password); 
+    INSERT INTO user_info (username, first_name, last_name) VALUES (:username2, :first_name, :last_name)";  
+    try { 
+       // $statement = $db->query($query);   // compile & exe
+ 
+       // prepared statement
+       // pre-compile
+       $statement1 = $db->prepare($query1);
+ 
+       // fill in the value
+       $statement1->bindValue(':email1', $NewEmail); 
+       $statement1->bindValue(':email2', $NewEmail); 
+       $statement1->bindValue(':username1', $NewUsername); 
+       $statement1->bindValue(':password', $NewPassword); 
+       $statement1->bindValue(':username2', $NewUsername); 
+       $statement1->bindValue(':first_name', $NewFirst_name); 
+       $statement1->bindValue(':last_name', $NewLast_name); 
+       // exe
+       $statement1->execute();
+       $statement1->closeCursor();
+    } catch (PDOException $e)
+    {
+       $e->getMessage();   // consider a generic message
+    } catch (Exception $e) 
+    {
+       $e->getMessage();   // consider a generic message
+    }
+
+}
+
+
 ?>
