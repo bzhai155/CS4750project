@@ -2,55 +2,55 @@
 require ('connect_database.php');
 //require('config.php');
 require ('request-db.php');
-
+include('config.php');
 $login_button = '';
 
-// if (isset($_GET["code"])) {
-//     //It will Attempt to exchange a code for an valid authentication token.
-//     $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+if (isset($_GET["code"])) {
+    //It will Attempt to exchange a code for an valid authentication token.
+    // $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
 
-//     //This condition will check there is any error occur during geting authentication token. If there is no any error occur then it will execute if block of code/
-//     if (!isset($token['error'])) {
-//         //Set the access token used for requests
-//         $google_client->setAccessToken($token['access_token']);
+    // //This condition will check there is any error occur during geting authentication token. If there is no any error occur then it will execute if block of code/
+    // if (!isset($token['error'])) {
+    //     //Set the access token used for requests
+    //     $google_client->setAccessToken($token['access_token']);
 
-//         //Store "access_token" value in $_SESSION variable for future use.
-//         $_SESSION['access_token'] = $token['access_token'];
+    //     //Store "access_token" value in $_SESSION variable for future use.
+    //     $_SESSION['access_token'] = $token['access_token'];
 
-//         //Create Object of Google Service OAuth 2 class
-//         $google_service = new Google_Service_Oauth2($google_client);
+    //     //Create Object of Google Service OAuth 2 class
+    //     $google_service = new Google_Service_Oauth2($google_client);
 
-//         //Get user profile data from google
-//         $data = $google_service->userinfo->get();
+    //     //Get user profile data from google
+    //     $data = $google_service->userinfo->get();
 
-//         //Below you can find Get profile data and store into $_SESSION variable
-//         if (!empty($data['given_name'])) {
-//             $_SESSION['user_first_name'] = $data['given_name'];
-//         }
+    //     //Below you can find Get profile data and store into $_SESSION variable
+    //     if (!empty($data['given_name'])) {
+    //         $_SESSION['user_first_name'] = $data['given_name'];
+    //     }
 
-//         if (!empty($data['family_name'])) {
-//             $_SESSION['user_last_name'] = $data['family_name'];
-//         }
+    //     if (!empty($data['family_name'])) {
+    //         $_SESSION['user_last_name'] = $data['family_name'];
+    //     }
 
-//         if (!empty($data['email'])) {
-//             $_SESSION['user_email_address'] = $data['email'];
-//         }
+    //     if (!empty($data['email'])) {
+    //         $_SESSION['user_email_address'] = $data['email'];
+    //     }
 
-//         if (!empty($data['gender'])) {
-//             $_SESSION['user_gender'] = $data['gender'];
-//         }
+    //     if (!empty($data['gender'])) {
+    //         $_SESSION['user_gender'] = $data['gender'];
+    //     }
 
-//         if (!empty($data['picture'])) {
-//             $_SESSION['user_image'] = $data['picture'];
-//         }
-//     }
-// }
+    //     if (!empty($data['picture'])) {
+    //         $_SESSION['user_image'] = $data['picture'];
+    //     }
+    // }
+}
 
-// //This is for check user has login into system by using Google account, if User not login into system then it will execute if block of code and make code for display Login link for Login using Google account.
-// if (!isset($_SESSION['access_token'])) {
-//     //Create a URL to obtain user authorization
-//     $login_button = '<a href="' . $google_client->createAuthUrl() . '"><img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" /></a>';
-// }
+//This is for check user has login into system by using Google account, if User not login into system then it will execute if block of code and make code for display Login link for Login using Google account.
+if (!isset($_SESSION['access_token'])) {
+    //Create a URL to obtain user authorization
+    $login_button = '<a href="' . $google_client->createAuthUrl() . '"><img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" /></a>';
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
 {
@@ -68,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
 <head>
     <meta charset="UTF-8">
 
-
     <title>UVA Food Review</title>
 
     <!-- 3. link bootstrap -->
@@ -80,12 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
 <body>
     <header class="headBlock">
         <div>
-            <a href="index.php"> <img src="assets/pepper.png" class="d-inline-block ms-5 pb-2"
+            <a href="main.php"> <img src="assets/pepper.png" class="d-inline-block ms-5 pb-2"
                     style="width:30px; height:40px;" alt="Nookazaon 2.0" />
-                <a href="index.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>UVA food review</a>
-                <?php if (!isset($_SESSION['token'])) { ?>
+                <a href="main.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>UVA food review</a>
+                <!-- <?php if (!isset($_SESSION['token'])) { ?>
                     <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
-                <?php } ?>
+                <?php } ?> -->
     </header>
 
     <body>
@@ -133,19 +132,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
                     </div>
                 </div>
             </div>
-            <!-- <div class="panel panel-default">
+            <div class="panel panel-default">
                 <?php
                 if ($login_button == '') {
-                    echo '<div class="panel-heading">Welcome User</div><div class="panel-body">';
-                    echo '<img src="' . $_SESSION["user_image"] . '" class="img-responsive img-circle img-thumbnail" />';
-                    echo '<h3><b>Name :</b> ' . $_SESSION['user_first_name'] . ' ' . $_SESSION['user_last_name'] . '</h3>';
-                    echo '<h3><b>Email :</b> ' . $_SESSION['user_email_address'] . '</h3>';
-                    echo '<h3><a href="logout.php">Logout</h3></div>';
+                    // echo '<div class="panel-heading">Welcome User</div><div class="panel-body">';
+                    // echo '<h3><b>Name :</b> ' . $_SESSION['user_first_name'] . ' ' . $_SESSION['user_last_name'] . '</h3>';
+                    // echo '<h3><b>Email :</b> ' . $_SESSION['user_email_address'] . '</h3>';
+                    // echo '<h3><a href="logout.php">Logout</h3></div>';
                 } else {
                     echo '<div align="center">' . $login_button . '</div>';
                 }
                 ?>
-            </div> -->
+            </div>
     </body>
     </div>
     </div>

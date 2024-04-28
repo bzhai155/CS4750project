@@ -1,16 +1,16 @@
 <?php
-session_start();
 
-if(!isset($_SESSION['token'])){
-  header('Location: index.php');
-  exit;
-}
+//logout.php
 
-require('./config.php');
+include('config.php');
 
+//Reset OAuth access token
 $google_client->revokeToken();
 
+//Destroy entire session data.
 session_destroy();
-header("Location: index.php");
-exit;
+
+//redirect page to index.php
+header('location:index.php');
+
 ?>
