@@ -1,6 +1,5 @@
 <?php
 require('connect_database.php');
-//require('config.php');
 require('request-db.php');
 
 $login_button = '';

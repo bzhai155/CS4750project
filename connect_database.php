@@ -3,12 +3,12 @@
 ////////////////////////////////////////////
 
 /** S24, PHP (on Google Standard App Engine) connect to MySQL instance (GCP) **/
-// $username = 'root';                       // or your username
-// $password = 'your-root-password';     
-// $host = 'instance-connection-name';       // e.g., 'cs4750:us-east4:db-demo'; 
-// $dbname = 'your-database-name';           // e.g., 'guestbook';
-// $dsn = "mysql:unix_socket=/cloudsql/instance-connection-name;dbname=your-database-name";
-//       e.g., "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
+$username = 'root';                       // or your username
+$password = '/%+lS8Fmk)%URxHB';     
+$host = 'cs4740db-421701:us-east4:cs4740db';       // e.g., 'cs4750:us-east4:db-demo'; 
+$dbname = 'CS4750db';           // e.g., 'guestbook';
+$dsn = "mysql:unix_socket=/cloudsql/cs4740db-421701:us-east4:cs4740db;dbname=CS4750db";
+      // e.g., "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
 // --------- to test, include app.yaml with the following code
 // runtime: php81
 // entrypoint: serve connect-db.php
@@ -42,11 +42,11 @@
 ////////////////////////////////////////////
 
 /** S24, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on CS server) **/
-$username = 'blz4mv'; 
-$password = 'Spring2024'; 
-$host = 'mysql01.cs.virginia.edu';
-$dbname = 'blz4mv';
-$dsn = "mysql:host=$host;dbname=$dbname";
+// $username = 'blz4mv'; 
+// $password = 'Spring2024'; 
+// $host = 'mysql01.cs.virginia.edu';
+// $dbname = 'blz4mv';
+// $dsn = "mysql:host=$host;dbname=$dbname";
 ////////////////////////////////////////////
 
 // To find a hostname, access phpMyAdmin
