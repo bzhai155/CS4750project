@@ -99,6 +99,41 @@ function getRequestById($id)
     return $result;
 
 }
+function getRatingRestaurants($name)  
+{
+    global $db;
+    $query = "select * from restaurant where name=:reqId"; 
+    $statement = $db->prepare($query);    // compile
+    $statement->bindValue(':reqId', $name);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+ 
+    return $result;
+
+}
+function getReviews($name)  
+{
+    global $db;
+    $query = "SELECT ue.username, rev.Rating, rev.Comment, rev.date
+    From review AS rev, 
+    (SELECT ri.restaurantID, ri.reviewID
+    FROM reviews ri, restaurant r 
+    WHERE r.name = :reqId
+    AND ri.restaurantID = r.restaurantID) AS E1,
+    user AS u, user_email as ue
+    WHERE rev.reviewID = E1.reviewID
+    AND rev.userID = u.userID
+    AND u.email  = ue.email;";
+    $statement = $db->prepare($query);    // compile
+    $statement->bindValue(':reqId', $name);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+ 
+    return $result;
+
+}
 
 function updateRequest($reqId, $reqDate, $roomNumber, $reqBy, $repairDesc, $reqPriority)
 {

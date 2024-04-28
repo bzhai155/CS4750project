@@ -82,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
             <a href="main.php"> <img src="assets/pepper.png" class="d-inline-block ms-5 pb-2"
                     style="width:30px; height:40px;" alt="Nookazaon 2.0" />
                 <a href="main.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>VA food review</a>
+                <a href="map.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Explore</a>
                 <?php if (!isset($_SESSION['token'])) { ?>
                     <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
                 <?php } ?>
