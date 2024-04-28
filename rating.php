@@ -74,6 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="maintenance-system.css">
 </head>
+<header class="headBlock">
+    <div>
+        <a href="main.php"> <img src="assets/pepper.png" class="d-inline-block ms-5 pb-2" style="width:30px; height:40px;" alt="Nookazaon 2.0" />
+            <a href="main.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>VA food review</a>
+            <a href="map.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Explore</a>
+            <?php if (!isset($_SESSION['token'])) { ?>
+                <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
+            <?php } ?>
+</header>
 
 <body>
     <div class="container">
