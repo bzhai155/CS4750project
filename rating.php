@@ -44,6 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
     } else if (!empty($_POST['submitfilter'])) {
         //echo $_POST['submitfilter'];
         $list_of_restaurants = getFilteredRestaurants($_POST['submitfilter']);
+    } else if (!empty($_POST['addreview'])) {
+        //echo $_POST['submitfilter'];
+        //$list_of_restaurants = getFilteredRestaurants($_POST['submitfilter']);
     }
 }
 
@@ -133,6 +136,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
 
             </table>
         </div>
+
+        <h1> Add Review </h1>
+        <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" onsubmit="return">
+            <table style="width:98%">
+                <tr>
+                    <td width="50%">
+                        <div class='mb-3'>
+                            <input type='text' class='form-control' id='newreviewrating' name='newreviewrating' placeholder='0-5' value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='mb-3'>
+                            <input type='text' class='form-control' id='newreviewtext' name='newreviewtext' value="" placeholder='review:' />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="row g-3 mx-auto">
+                <div class="col-4 d-grid ">
+                    <input type="submit" value="Add" id="addreview" name="addreview" class="btn btn-dark" title="Add a review" />
+                </div>
+            </div>
+        </form>
 
         <br /><br />
 

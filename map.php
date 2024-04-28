@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
                     <tr>
                         <td>
                             <?php
-                            $helper =  str_replace(" ",  "!",$req_info['name']);
+                            $helper =  str_replace(" ",  "!", $req_info['name']);
                             $heler1 = $req_info['name'];
                             echo "<html>
                                 <a href='rating.php?$helper' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i> $heler1  </a>"
@@ -92,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
 
             </table>
         </div>
-
 
         <br /><br />
 
