@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
         <h3>List of restaurants</h3>
         <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
             <h4 id='filter_header'> Filter: </h4>
-            <input value='restaurant' type="submit" class="btn btn-primary"  name="submitfilter" id="submitfilter" title="All Locations" />
-            <input value='dining_hall' type="submit" class="btn btn-primary"  name="submitfilter" id="submitfilter" title="Dining Hall Locations" />
+            <input value='restaurant' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="All Locations" />
+            <input value='dining_hall' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="Dining Hall Locations" />
             <input value='off_campus_dining' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="Off Campus Locations" />
             <input value='on_campus_dining' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="On Campus Locations" />
             </select>
@@ -75,7 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
                 <!-- iterate array of results, display the existing requests -->
                 <?php foreach ($list_of_restaurants as $req_info) : ?>
                     <tr>
-                        <td><?php echo $req_info['name']; ?></td>
+                        <td>
+                            <?php
+                            $helper =  str_replace(" ",  "!",$req_info['name']);
+                            $heler1 = $req_info['name'];
+                            echo "<html>
+                                <a href='rating.php?$helper' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i> $heler1  </a>"
+                            ?>
+                        </td>
                         <td><?php echo $req_info['street']; ?></td>
                         <td><?php echo $req_info['zipcode']; ?></td>
                         <td><?php echo $req_info['rating']; ?></td>

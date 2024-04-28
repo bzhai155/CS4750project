@@ -12,7 +12,7 @@ if ($whole == 'rating.php') {
 } else if ($whole == '/~blz4mv/CS4750/rating.php') {
     echo 'okay2';
 }
-echo $whole1;
+
 $whole2 = str_replace("!",  " ", $whole1);
 
 $list_of_restaurants = getAllRestaurants();
@@ -20,7 +20,7 @@ $list_of_restaurants = getAllRestaurants();
 $singleres = getRatingRestaurants($whole2);
 
 $allreviews = getReviews($whole2);
-echo count($singleres);
+
 // var_dump($list_of_requests);   // debug
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
