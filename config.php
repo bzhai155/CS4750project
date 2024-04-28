@@ -15,7 +15,7 @@ $google_client->setClientId('425904799058-ke9supq1igbp7r785iebktrm8k8itaeh.apps.
 $google_client->setClientSecret('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');
 
 //Set the OAuth 2.0 Redirect URI
-$google_client->setRedirectUri('https://cs4740db-421701.uk.r.appspot.com/index.php');
+$google_client->setRedirectUri('https://www.cs.virginia.edu/~blz4mv/CS4750/main.php');
 //
 $google_client->addScope('email');
 

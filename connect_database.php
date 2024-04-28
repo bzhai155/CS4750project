@@ -3,11 +3,11 @@
 ////////////////////////////////////////////
 
 /** S24, PHP (on Google Standard App Engine) connect to MySQL instance (GCP) **/
-$username = 'root';                       // or your username
-$password = '/%+lS8Fmk)%URxHB';     
-$host = 'cs4740db-421701:us-east4:cs4740db';       // e.g., 'cs4750:us-east4:db-demo'; 
-$dbname = 'CS4750db';           // e.g., 'guestbook';
-$dsn = "mysql:unix_socket=/cloudsql/cs4740db-421701:us-east4:cs4740db;dbname=CS4750db";
+// $username = 'root';                       // or your username
+// $password = '/%+lS8Fmk)%URxHB';     
+// $host = 'cs4740db-421701:us-east4:cs4740db';       // e.g., 'cs4750:us-east4:db-demo'; 
+// $dbname = 'CS4750db';           // e.g., 'guestbook';
+// $dsn = "mysql:unix_socket=/cloudsql/cs4740db-421701:us-east4:cs4740db;dbname=CS4750db";
       // e.g., "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
 // --------- to test, include app.yaml with the following code
 // runtime: php81
@@ -17,11 +17,11 @@ $dsn = "mysql:unix_socket=/cloudsql/cs4740db-421701:us-east4:cs4740db;dbname=CS4
 ////////////////////////////////////////////
 
 /** S24, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
-//$username = 'blz4mv';
-//$password = 'password';        //change before uploading to github
-//$host = 'mysql01.cs.virginia.edu';       // e.g., 'cs4750:us-east4:db-demo'; 
-//$dbname = 'blz4mv';           // e.g., 'guestbook';
-//$dsn = "mysql:host=mysql01.cs.virginia.edu;dbname=blz4mv";   // connect PHP (XAMPP) to DB (GCP)
+// $username = 'blz4mv';
+// $password = 'spring2024';        //change before uploading to github
+// $host = '35.194.92.38';       // e.g., 'cs4750:us-east4:db-demo'; 
+// $dbname = 'CS4750db';           // e.g., 'guestbook';
+// $dsn = "mysql:host=35.194.92.38;dbname=CS4750db";   // connect PHP (XAMPP) to DB (GCP)
       //e.g., "mysql:host=99.99.999.99;dbname=$dbname";   
 
 // to get public IP addres of the SQL instance, go to GCP SQL overview page
@@ -42,11 +42,11 @@ $dsn = "mysql:unix_socket=/cloudsql/cs4740db-421701:us-east4:cs4740db;dbname=CS4
 ////////////////////////////////////////////
 
 /** S24, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on CS server) **/
-// $username = 'blz4mv'; 
-// $password = 'Spring2024'; 
-// $host = 'mysql01.cs.virginia.edu';
-// $dbname = 'blz4mv';
-// $dsn = "mysql:host=$host;dbname=$dbname";
+$username = 'blz4mv'; 
+$password = 'Spring2024'; 
+$host = 'mysql01.cs.virginia.edu';
+$dbname = 'blz4mv';
+$dsn = "mysql:host=$host;dbname=$dbname";
 ////////////////////////////////////////////
 
 // To find a hostname, access phpMyAdmin

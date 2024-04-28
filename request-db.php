@@ -46,7 +46,44 @@ function getAllRequests()
     $statement->closeCursor();
  
     return $result;
+}
 
+function getAllRestaurants()
+{
+    global $db;
+    $query = "select * from restaurant";    
+    $statement = $db->prepare($query);    // compile
+    $statement->execute();
+    $result = $statement->fetchAll();     // fetch()
+    $statement->closeCursor();
+ 
+    return $result;
+}
+
+function getFilteredRestaurants($filter)
+{
+    global $db;
+    $query = "";
+    if ($filter == "restaurant"){
+        $query = "select * from restaurant";  
+    }else if ($filter == "dining_hall"){
+        $query = "SELECT DISTINCT r.restaurantID, r.name, r.street, r.zipcode, r.zipcode, r.status
+        FROM dining_hall d, restaurant r
+        WHERE d.restaurantID = r.restaurantID;";
+    }else if ($filter == "off_campus_dining"){
+        $query = "SELECT DISTINCT r.restaurantID, r.name, r.street, r.zipcode, r.zipcode, r.status
+        FROM off_campus_dining d, restaurant r
+        WHERE d.restaurantID = r.restaurantID;";
+    }else if ($filter == "on_campus_dining"){
+        $query = "SELECT DISTINCT r.restaurantID, r.name, r.street, r.zipcode, r.zipcode, r.status
+        FROM on_campus_dining d, restaurant r
+        WHERE d.restaurantID = r.restaurantID;";
+    }
+    $statement = $db->prepare($query);    // compile
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
 }
 
 function getRequestById($id)  
