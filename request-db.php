@@ -290,6 +290,17 @@ function addUser($NewUsername, $NewPassword, $NewEmail, $NewFirst_name, $NewLast
     }
 
 }
+function updateStatus($restname, $status)
+{
+    global $db;
+    $query = "update restaurant set status=:status where name=:name" ; 
+ 
+    $statement = $db->prepare($query);
+    $statement->bindValue(':status', $status);
+    $statement->bindValue(':name', $restname);
+ 
+    $statement->execute();
+    $statement->closeCursor();
 
-
+}
 ?>
