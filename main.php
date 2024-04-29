@@ -1,6 +1,6 @@
 <?php
 require('connect_database.php');
-//require('config.php');
+//require('config.php')
 require('request-db.php');
 require('config.php');
 
@@ -83,83 +83,94 @@ $user = get_string_between($whole1);
 
 <head>
     <meta charset="UTF-8">
-
     <title>UVA Food Review</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <!-- 3. link bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manjari&display=swap">
+    <style>
+        body {
+            font-family: 'Manjari', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
     <header class="headBlock">
-        <div>
-            <?php
-            echo "<html>
-                <a href='main.php??user=$user'> <img src='assets/pepper.png' class='d-inline-block ms-5 pb-2' style='width:30px; height:40px;' alt='Nookazaon 2.0' />  </a>
-                <a href='main.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>VA food review</a>
-                <a href='map.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>Explore</a>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: orange;">
+                <div class="container">
+                        <?php
+                        echo "<html>
+                        <a class='navbar-brand' href='main.php??user=$user'>"
+                             ?>
+                        <img src="assets/pepper.png" class="d-inline-block align-top" style="width:30px; height:40px;" alt="Nookazaon 2.0">
+                        <span class="clickable">VA Food Review</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                  <?php
+                                      echo "<html>
+                <a class='nav-link clickable' href='map.php??user=$user' style='color: white; border: 1px solid white; padding: 5px 10px; border-radius: 5px;'>Explore</a>
                 "
-            ?>
-                <!-- <?php if (!isset($_SESSION['token'])) { ?>
-                    <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
-                <?php } ?> -->
+                             ?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 
-    <body>
-        <div class="page_intro intro">
-            <div class="intro_container container">
-                <div class="intro_body">
-                    <div class="intro_content" style="margin-top: 10%;">
-                        <h1 class="intro_title"> <b style="color: #ad8751;">UVA food review</b>
-                            <h2 class="intro_position" style="color: #ad8751;"> welcome hoos! login to begin
-                        </h1>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                    <h1 class="intro_title text-center"> <b style="color: orange;">UVA FOOD REVIEW</b> </h1>
+                    <h2 class="intro_position text-center"> Welcome Hoos! </h2>
+                    <h5 class="text-center"> Login to Begin: </h5>
 
-                        <div class="container">
-                            <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" onsubmit="return validateInput()">
-                                <table style="width:98%">
-                                    <tr>
-                                        <td width="50%">
-                                            <div class='mb-3'>
-                                                <input type='text' class='form-control' id='requestedUsername' name='requestedUsername' placeholder='Enter username or email address' value="" />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class='mb-3'>
-                                                <input type='text' class='form-control' id='RequestPassword' name='RequestPassword' placeholder='Enter password' value="" />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div class="col-4 d-grid ">
-                                    <input type="submit" value="Login" id="LoginBtn" name="LoginBtn" class="btn btn-dark" title="Submit Login info" />
-                                </div>
-                                <div class="col-4 d-grid ">
-                                    <a href="signup.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>signup</a>
-                                </div>
-                                <div>
-                                </div>
-                            </form>
-                        </div>
-                        <br1>
+                        <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+                            <div class="mb-3">
+                                <label for="requestedUsername" class="form-label">Username or Email Address</label>
+                                <input type="text" class="form-control" id="requestedUsername"
+                                    name="requestedUsername" placeholder="Enter username or email address" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="RequestPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="RequestPassword"
+                                    name="RequestPassword" placeholder="Enter password" required>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary" id="LoginBtn" name="LoginBtn" style="color: white;">Sign In</button>
+                            </div>
+
+                            <div class="text-center mt-3">
+                                Are you a new user? <a href="signup.php" style="color: black;">Create an account</a>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <?php
-                if ($login_button == '') {
-                    echo '<div class="panel-heading">Welcome User</div><div class="panel-body">';
-                    echo '<h3><b>Name :</b> ' . $_SESSION['user_first_name'] . ' ' . $_SESSION['user_last_name'] . '</h3>';
-                    echo '<h3><b>Email :</b> ' . $_SESSION['user_email_address'] . '</h3>';
-                    echo '<h3><a href="logout.php">Logout</h3></div>';
-                } else {
-                    echo '<div align="center">' . $login_button . '</div>';
-                }
-                ?>
-            </div>
-    </body>
+        </div>
     </div>
-    </div>
+
 </body>
+
+<footer class="footerBlock fixed-bottom" style="background-color: orange;">
+    <div class="container">
+        <span style="font-size: 12px; color: white;">Copyright CS 4750 Spring 2024</span><br>
+        <span style="font-size: 12px; color: white;">Bertram Zhai, Anna Pham, Betty Chen</span>
+    </div>
+</footer>
 
 </html>
