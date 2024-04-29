@@ -29,20 +29,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
     }
 }
 
+function get_string_between($string){
+    $string = ' ' . $string;
+    $ini = strpos($string, '?user=');
+    if ($ini == 0) return '';
+    $ini += strlen('?user=');
+    if(strpos($string, '?page') == false) {
+        $len =  strlen($string) - $ini;
+    }else{
+        $len = strpos($string, "?page", $ini) - $ini;
+    }
+    return substr($string, $ini, $len);
+}
+
+$whole1 = @parse_url($_SERVER['REQUEST_URI'])['query'];
+$user = get_string_between($whole1);
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href='css/style.css'>
 <header class="headBlock">
-    <div>
-        <a href="main.php"> <img src="assets/pepper.png" class="d-inline-block ms-5 pb-2" style="width:30px; height:40px;" alt="Nookazaon 2.0" />
-            <a href="main.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>VA food review</a>
-            <a href="map.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Explore</a>
-            <?php if (!isset($_SESSION['token'])) { ?>
-                <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
-            <?php } ?>
-</header>
+        <div>
+            <?php
+            echo "<html>
+                <a href='main.php??user=$user'> <img src='assets/pepper.png' class='d-inline-block ms-5 pb-2' style='width:30px; height:40px;' alt='Nookazaon 2.0' />  </a>
+                <a href='main.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>VA food review</a>
+                <a href='map.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>Explore</a>
+                "
+            ?>
+                <!-- <?php if (!isset($_SESSION['token'])) { ?>
+                    <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
+                <?php } ?> -->
+    </header>
 
 <head>
     <meta charset="utf-8">
@@ -89,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
                             $helper =  str_replace(" ",  "!", $req_info['name']);
                             $heler1 = $req_info['name'];
                             echo "<html>
-                                <a href='rating.php?$helper' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i> $heler1  </a>"
+                                <a href='rating.php??user=$user?page$helper' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i> $heler1  </a>"
                             ?>
                         </td>
                         <td><?php echo $req_info['street']; ?></td>

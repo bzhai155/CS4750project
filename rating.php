@@ -2,18 +2,24 @@
 
 require("connect_database.php");
 require("request-db.php");
-
-$whole1 = @parse_url($_SERVER['REQUEST_URI'])['query'];
-$whatIWant = substr($whole, strpos($whole, "?") + 1);
-if ($whole == 'rating.php') {
-    echo 'wow';
-} else if ($whole == 'rating.php/hi') {
-    echo 'okay';
-} else if ($whole == '/~blz4mv/CS4750/rating.php') {
-    echo 'okay2';
+function get_string_between($string){
+    $string = ' ' . $string;
+    $ini = strpos($string, '?user=');
+    if ($ini == 0) return '';
+    $ini += strlen('?user=');
+    if(strpos($string, '?page') == false) {
+        $len =  strlen($string) - $ini;
+    }else{
+        $len = strpos($string, "?page", $ini) - $ini;
+    }
+    return substr($string, $ini, $len);
 }
 
-$whole2 = str_replace("!",  " ", $whole1);
+$whole1 = @parse_url($_SERVER['REQUEST_URI'])['query'];
+$user = get_string_between($whole1);
+$whatIWant = substr($whole1, strpos($whole1, '?page') + 5);
+
+$whole2 = str_replace("!",  " ", $whatIWant);
 
 $list_of_restaurants = getAllRestaurants();
 
@@ -75,14 +81,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
     <link rel="stylesheet" href="maintenance-system.css">
 </head>
 <header class="headBlock">
-    <div>
-        <a href="main.php"> <img src="assets/pepper.png" class="d-inline-block ms-5 pb-2" style="width:30px; height:40px;" alt="Nookazaon 2.0" />
-            <a href="main.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>VA food review</a>
-            <a href="map.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Explore</a>
-            <?php if (!isset($_SESSION['token'])) { ?>
-                <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
-            <?php } ?>
-</header>
+        <div>
+            <?php
+            echo "<html>
+                <a href='main.php??user=$user'> <img src='assets/pepper.png' class='d-inline-block ms-5 pb-2' style='width:30px; height:40px;' alt='Nookazaon 2.0' />  </a>
+                <a href='main.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>VA food review</a>
+                <a href='map.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>Explore</a>
+                "
+            ?>
+                <!-- <?php if (!isset($_SESSION['token'])) { ?>
+                    <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
+                <?php } ?> -->
+    </header>
 
 <body>
     <div class="container">

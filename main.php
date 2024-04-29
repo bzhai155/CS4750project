@@ -1,7 +1,7 @@
 <?php
-require ('connect_database.php');
+require('connect_database.php');
 //require('config.php');
-require ('request-db.php');
+require('request-db.php');
 require('config.php');
 
 $login_button = '';
@@ -60,6 +60,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
         //$list_of_requests = getAllRequests();
     }
 }
+function get_string_between($string){
+    $string = ' ' . $string;
+    $ini = strpos($string, '?user=');
+    if ($ini == 0) return '';
+    $ini += strlen('?user=');
+    if(strpos($string, '?page') == false) {
+        $len =  strlen($string) - $ini;
+    }else{
+        $len = strpos($string, "?page", $ini) - $ini;
+    }
+    return substr($string, $ini, $len);
+}
+
+$whole1 = @parse_url($_SERVER['REQUEST_URI'])['query'];
+$user = get_string_between($whole1);
+
 ?>
 <!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
@@ -71,21 +87,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
     <title>UVA Food Review</title>
 
     <!-- 3. link bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 </head>
 
 <body>
     <header class="headBlock">
         <div>
-            <a href="main.php"> <img src="assets/pepper.png" class="d-inline-block ms-5 pb-2"
-                    style="width:30px; height:40px;" alt="Nookazaon 2.0" />
-                <a href="main.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>VA food review</a>
-                <a href="map.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Explore</a>
-                <?php if (!isset($_SESSION['token'])) { ?>
+            <?php
+            echo "<html>
+                <a href='main.php??user=$user'> <img src='assets/pepper.png' class='d-inline-block ms-5 pb-2' style='width:30px; height:40px;' alt='Nookazaon 2.0' />  </a>
+                <a href='main.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>VA food review</a>
+                <a href='map.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>Explore</a>
+                "
+            ?>
+                <!-- <?php if (!isset($_SESSION['token'])) { ?>
                     <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
-                <?php } ?>
+                <?php } ?> -->
     </header>
 
     <body>
@@ -98,32 +116,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
                         </h1>
 
                         <div class="container">
-                            <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>"
-                                onsubmit="return validateInput()">
+                            <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" onsubmit="return validateInput()">
                                 <table style="width:98%">
                                     <tr>
                                         <td width="50%">
                                             <div class='mb-3'>
-                                                <input type='text' class='form-control' id='requestedUsername'
-                                                    name='requestedUsername'
-                                                    placeholder='Enter username or email address' value="" />
+                                                <input type='text' class='form-control' id='requestedUsername' name='requestedUsername' placeholder='Enter username or email address' value="" />
                                             </div>
                                         </td>
                                         <td>
                                             <div class='mb-3'>
-                                                <input type='text' class='form-control' id='RequestPassword'
-                                                    name='RequestPassword' placeholder='Enter password' value="" />
+                                                <input type='text' class='form-control' id='RequestPassword' name='RequestPassword' placeholder='Enter password' value="" />
                                             </div>
                                         </td>
                                     </tr>
                                 </table>
                                 <div class="col-4 d-grid ">
-                                    <input type="submit" value="Login" id="LoginBtn" name="LoginBtn"
-                                        class="btn btn-dark" title="Submit Login info" />
+                                    <input type="submit" value="Login" id="LoginBtn" name="LoginBtn" class="btn btn-dark" title="Submit Login info" />
                                 </div>
                                 <div class="col-4 d-grid ">
-                                    <a href="signup.php" class="a_links"
-                                        style="margin-top: 3px; margin-right: 5px;"></i>signup</a>
+                                    <a href="signup.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>signup</a>
                                 </div>
                                 <div>
                                 </div>
