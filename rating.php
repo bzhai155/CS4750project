@@ -63,44 +63,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
 <link rel="stylesheet" href='css/style.css'>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Upsorn Praphamontripong">
-    <meta name="description" content="Maintenance request form, a small/toy web app for ISP homework assignment, used by CS 3250 (Software Testing)">
-    <meta name="keywords" content="CS 3250, Upsorn, Praphamontripong, Software Testing">
-    <link rel="icon" href="https://www.cs.virginia.edu/~up3f/cs3250/images/st-icon.png" type="image/png" />
-    <?php
-    echo "<html>
-      <head>
-          <title> Rating $whole2 </title>";
-    ?>
-    <title>Rating </title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="maintenance-system.css">
+    <meta charset="UTF-8">
+    <title>UVA Food Review - Map</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manjari&display=swap">
+    <style>
+        body {
+            font-family: 'Manjari', sans-serif;
+        }
+    </style>
 </head>
+
 <header class="headBlock">
-        <div>
-            <?php
-            echo "<html>
-                <a href='main.php??user=$user'> <img src='assets/pepper.png' class='d-inline-block ms-5 pb-2' style='width:30px; height:40px;' alt='Nookazaon 2.0' />  </a>
-                <a href='main.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>VA food review</a>
-                <a href='map.php??user=$user' class='a_links' style='margin-top: 3px; margin-right: 5px;'></i>Explore</a>
-                "
-            ?>
-                <!-- <?php if (!isset($_SESSION['token'])) { ?>
-                    <a href="redirect.php" class="a_links" style="margin-top: 3px; margin-right: 5px;"></i>Login</a>
-                <?php } ?> -->
-    </header>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: orange;">
+                <div class="container">
+                    <a class="navbar-brand" href="main.php">
+                        <img src="assets/pepper.png" class="d-inline-block align-top" style="width:30px; height:40px;" alt="Nookazaon 2.0">
+                        <span class="clickable">VA Food Review</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link clickable" href="map.php" style="color: white; border: 1px solid white; padding: 5px 10px; border-radius: 5px;">Explore</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+</header>
 
 <body>
     <div class="container">
-        <?php
-        echo "<html>
+    <?php
+    echo "<html>
         <head>
-        <h3> $whole2 </h3>";
-        ?>
+        <div class='text-center mt-3'>
+        <h2 class='text-uppercase'> $whole2 </h2>
+        </div>";
+    ?>
+
         <!-- <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
             <h4 id='filter_header'> Filter: </h4>
             <input value='restaurant' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="All Locations" />
@@ -109,86 +118,97 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
             <input value='on_campus_dining' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="On Campus Locations" />
             </select>
         </form> -->
-        <div class="row justify-content-center">
-            <table class="w3-table w3-bordered w3-card-4 center" style="width:100%">
-                <thead>
-                    <tr style="background-color:#B0B0B0">
-                        <th><b>Name</b></th>
-                        <th><b>Street</b></th>
-                        <th><b>Zipcode</b></th>
-                        <th><b>Rating</b></th>
-                        <th><b>Status</b></th>
-                    </tr>
-                </thead>
-                <!-- iterate array of results, display the existing requests -->
-                <?php foreach ($singleres as $req_info) : ?>
-                    <tr>
-                        <td><?php echo $req_info['name']; ?></td>
-                        <td><?php echo $req_info['street']; ?></td>
-                        <td><?php echo $req_info['zipcode']; ?></td>
-                        <td><?php echo $req_info['rating']; ?></td>
-                        <td><?php echo $req_info['status']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
 
-            </table>
-        </div>
-        <div class="row justify-content-center">
-            <table class="w3-table w3-bordered w3-card-4 center" style="width:100%">
-                <thead>
-                    <tr style="background-color:#B0B0B0">
-                        <th><b>username</b></th>
-                        <th><b>Rating</b></th>
-                        <th><b>Comment</b></th>
-                        <th><b>date</b></th>
-                    </tr>
-                </thead>
-                <!-- iterate array of results, display the existing requests -->
-                <?php foreach ($allreviews as $req_info) : ?>
-                    <tr>
-                        <td><?php echo $req_info['username']; ?></td>
-                        <td><?php echo $req_info['Rating']; ?></td>
-                        <td><?php echo $req_info['Comment']; ?></td>
-                        <td><?php echo $req_info['date']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-
-            </table>
-        </div>
-
-        <h1> Add Review </h1>
-        <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" onsubmit="return">
-            <table style="width:98%">
-                <tr>
-                    <td width="50%">
-                        <div class='mb-3'>
-                            <input type='text' class='form-control' id='newreviewrating' name='newreviewrating' placeholder='0-5' value="" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class='mb-3'>
-                            <input type='text' class='form-control' id='newreviewtext' name='newreviewtext' value="" placeholder='review:' />
-                        </div>
-                    </td>
-                </tr>
-            </table>
-
-            <div class="row g-3 mx-auto">
-                <div class="col-4 d-grid ">
-                    <input type="submit" value="Add" id="addreview" name="addreview" class="btn btn-dark" title="Add a review" />
+        <div class="row">
+            
+            <div class="col-md-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class='text-center fw-bold'>Basic Information</h4>
+                        <!-- iterate array of results, display the existing requests -->
+                        <?php foreach ($singleres as $req_info) : ?>
+                            <div class="mb-3">
+                                <p class="mb-1">Street: <?php echo $req_info['street']; ?></p>
+                                <p class="mb-1">Zipcode: <?php echo $req_info['zipcode']; ?></p>
+                                <p class="mb-1">Rating: <?php echo $req_info['rating']; ?></p>
+                                <p class="mb-1">Status: <?php echo $req_info['status']; ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
-        </form>
+
+                
+            <div class="col-md-9">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="card-title text-center fw-bold">User Reviews</h4>
+                        <?php foreach ($allreviews as $req_info) : ?>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        User <span class="fw-bold" style="color: orange;"><?php echo $req_info['username']; ?></span> rates this restaurant a 
+                                        <span class="fw-bold" style="color: orange;"><?php echo $req_info['Rating']; ?></span>/5
+                                    </p>
+                                    <p class="card-text">"<?php echo $req_info['Comment']; ?>"</p>
+                                    <p class="card-text"><small class="text-muted"><?php echo $req_info['date']; ?></small></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row">
+            <h4> Add A Review </h4>
+
+            <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" onsubmit="return">
+
+                <div class="row mb-3">
+                    <div class="col-md-1">
+                        <label for="newreviewrating" class="form-label">Rating:</label>
+                        <select class="form-select form-select-sm" id="newreviewrating" name="newreviewrating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="newreviewtext" class="form-label">Review:</label>
+                        <input type="text" class="form-control" id="newreviewtext" name="newreviewtext" placeholder="Enter your review">
+                    </div>
+                </div>
+
+                <div class="row g-3 mx-auto">
+                    <div class="col-1 d-grid">
+                        <button type="submit" value="Add" id="addreview" name="addreview" class="btn btn-primary" title="Add a review">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+
 
         <br /><br />
-
-        <?php include('footer.html') ?>
 
         <!-- <script src='maintenance-system.js'></script> -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
+
+<footer class="footerBlock fixed-bottom" style="background-color: orange;">
+        <div class="container">
+            <span style="font-size: 12px; color: white;">Copyright CS 4750 Spring 2024</span><br>
+            <span style="font-size: 12px; color: white;">Bertram Zhai, Anna Pham, Betty Chen</span>
+        </div>
+</footer>
 
 </html>
