@@ -48,11 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
         deleteRequest($_POST['reqId']);
         $list_of_requests = getAllRequests();
     } else if (!empty($_POST['submitfilter'])) {
-        //echo $_POST['submitfilter'];
+
         $list_of_restaurants = getFilteredRestaurants($_POST['submitfilter']);
+
     } else if (!empty($_POST['addreview'])) {
-        //echo $_POST['submitfilter'];
-        //$list_of_restaurants = getFilteredRestaurants($_POST['submitfilter']);
+        addReview($_POST['newreviewrating'], $_POST['newreviewtext'], $user, date("Y-m-d"), $whole2);
+        $allreviews = getReviews($whole2);
+    }  else if (!empty($_POST['deleteReview'])) {
+        deleteReview($_POST['reviewID']);
+        $allreviews = getReviews($whole2);
     }
 }
 
@@ -80,25 +84,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: orange;">
                 <div class="container">
-                    <a class="navbar-brand" href="main.php">
-                        <img src="assets/pepper.png" class="d-inline-block align-top" style="width:30px; height:40px;" alt="Nookazaon 2.0">
-                        <span class="clickable">VA Food Review</span>
+                    <?php
+                    echo "<html>
+                        <a class='navbar-brand' href='main.php??user=$user'>"
+                    ?>
+                    <img src="assets/pepper.png" class="d-inline-block align-top" style="width:30px; height:40px;" alt="Nookazaon 2.0">
+                    <span class="clickable">VA Food Review</span>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link clickable" href="map.php" style="color: white; border: 1px solid white; padding: 5px 10px; border-radius: 5px;">Explore</a>
+                                <?php
+                                echo "<html>
+                <a class='nav-link clickable' href='map.php??user=$user' style='color: white; border: 1px solid white; padding: 5px 10px; border-radius: 5px;'>Explore</a>"
+                                ?>
                             </li>
                         </ul>
+                        <li class="nav-item">
+                            <?php
+                            echo "<html>
+                            <span class='clickable' text='#ffffff' >$user</span>"
+                            ?>
+                        </li>
                     </div>
                 </div>
             </nav>
         </div>
-</header>
+    </header>
 
 <body>
     <div class="container">
@@ -109,15 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
         <h2 class='text-uppercase'> $whole2 </h2>
         </div>";
     ?>
-
-        <!-- <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
-            <h4 id='filter_header'> Filter: </h4>
-            <input value='restaurant' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="All Locations" />
-            <input value='dining_hall' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="Dining Hall Locations" />
-            <input value='off_campus_dining' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="Off Campus Locations" />
-            <input value='on_campus_dining' type="submit" class="btn btn-primary" name="submitfilter" id="submitfilter" title="On Campus Locations" />
-            </select>
-        </form> -->
 
         <div class="row">
             
@@ -152,6 +158,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
                                     </p>
                                     <p class="card-text">"<?php echo $req_info['Comment']; ?>"</p>
                                     <p class="card-text"><small class="text-muted"><?php echo $req_info['date']; ?></small></p>
+                                    <?php if($user == $req_info['username']): ?>
+                                        <form  method="post"> 
+                                        <input type="submit" value="Delete" name="deleteReview" class="btn btn-danger" />
+                                        <input type="hidden" name="reviewID" value="<?php echo $req_info['reviewID']; ?>" />
+                                    </form>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -162,8 +174,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
         </div>
 
         <br><br>
-
-        <div class="row">
+        <?php if($user != ""): ?>
+            <div class="row">
             <h4> Add A Review </h4>
 
             <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" onsubmit="return">
@@ -194,6 +206,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
             </form>
 
         </div>
+        <?php endif; ?>
+    
 
 
 
@@ -204,11 +218,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
 
 </body>
 
-<footer class="footerBlock fixed-bottom" style="background-color: orange;">
+    <footer class="footerBlock fixed-bottom" style="background-color: orange;">
         <div class="container">
             <span style="font-size: 12px; color: white;">Copyright CS 4750 Spring 2024</span><br>
             <span style="font-size: 12px; color: white;">Bertram Zhai, Anna Pham, Betty Chen</span>
         </div>
-</footer>
+    </footer>
 
 </html>

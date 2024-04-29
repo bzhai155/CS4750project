@@ -68,25 +68,36 @@ $user = get_string_between($whole1);
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: orange;">
                 <div class="container">
-                    <a class="navbar-brand" href="main.php">
-                        <img src="assets/pepper.png" class="d-inline-block align-top" style="width:30px; height:40px;" alt="Nookazaon 2.0">
-                        <span class="clickable">VA Food Review</span>
+                    <?php
+                    echo "<html>
+                        <a class='navbar-brand' href='main.php??user=$user'>"
+                    ?>
+                    <img src="assets/pepper.png" class="d-inline-block align-top" style="width:30px; height:40px;" alt="Nookazaon 2.0">
+                    <span class="clickable">VA Food Review</span>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link clickable" href="map.php" style="color: white; border: 1px solid white; padding: 5px 10px; border-radius: 5px;">Explore</a>
+                                <?php
+                                echo "<html>
+                <a class='nav-link clickable' href='map.php??user=$user' style='color: white; border: 1px solid white; padding: 5px 10px; border-radius: 5px;'>Explore</a>"
+                                ?>
                             </li>
                         </ul>
+                        <li class="nav-item">
+                            <?php
+                            echo "<html>
+                            <span class='clickable' text='#ffffff' >$user</span>"
+                            ?>
+                        </li>
                     </div>
                 </div>
             </nav>
         </div>
-</header>
+    </header>
 
 <body>
     <div class="container" style="padding-top: 20px;">
