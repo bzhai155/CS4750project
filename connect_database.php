@@ -17,11 +17,11 @@
 ////////////////////////////////////////////
 
 /** S24, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
-//$username = 'blz4mv';
-//$password = 'password';        //change before uploading to github
-//$host = 'mysql01.cs.virginia.edu';       // e.g., 'cs4750:us-east4:db-demo'; 
-//$dbname = 'blz4mv';           // e.g., 'guestbook';
-//$dsn = "mysql:host=mysql01.cs.virginia.edu;dbname=blz4mv";   // connect PHP (XAMPP) to DB (GCP)
+// $username = 'blz4mv';
+// $password = 'spring2024';        //change before uploading to github
+// $host = '35.194.92.38';       // e.g., 'cs4750:us-east4:db-demo'; 
+// $dbname = 'CS4750db';           // e.g., 'guestbook';
+// $dsn = "mysql:host=35.194.92.38;dbname=CS4750db";   // connect PHP (XAMPP) to DB (GCP)
       //e.g., "mysql:host=99.99.999.99;dbname=$dbname";   
 
 // to get public IP addres of the SQL instance, go to GCP SQL overview page

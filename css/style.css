@@ -1,0 +1,8 @@
+#filter_header{
+    display:inline-block;
+    margin-right:10px;
+}
+#filter_options{
+    display:inline-block;
+    width:300px;
+}
