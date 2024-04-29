@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
   if (!empty($_POST['CreateUser']))    // $_GET['....']
   {
       addUser($_POST['NewUsername'], $_POST['NewPassword'], $_POST['NewEmail'], $_POST['NewFirstName'], $_POST['NewLastName']);
+      header("Location: https://cs4740db-421701.uk.r.appspot.com/main.php");
       //$list_of_requests = getAllRequests();
   }
 }

@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')   // GET
         $user12 = login($_POST['requestedUsername'], $_POST['RequestPassword']);
         if (count($user12) > 0){
             $actualu = $user12[0]['username'];
-            header("Location: https://www.cs.virginia.edu/~blz4mv/CS4750/map.php??user=$actualu");
+            header("Location: https://cs4740db-421701.uk.r.appspot.com/map.php??user=$actualu");
             exit();
         }
     }
@@ -110,7 +110,7 @@ $user = get_string_between($whole1);
                         <a class='navbar-brand' href='main.php??user=$user'>"
                     ?>
                     <img src="assets/pepper.png" class="d-inline-block align-top" style="width:30px; height:40px;" alt="Nookazaon 2.0">
-                    <span class="clickable">VA Food Review</span>
+                    <span class="clickable">UVA Food Review</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
